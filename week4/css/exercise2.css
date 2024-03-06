@@ -1,0 +1,35 @@
+#first {
+	font-family: Times New Roman;
+	color: red;
+
+}
+
+#second {
+	font-family: Georgia;
+	color: Green;
+}
+
+#third {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	color: black;
+}
+
+#fourth {
+	font-family: Arial;
+	color: blue;
+}
+
+#fifth {
+	font-family: Verdana;
+	color: maroon;
+}
+
+#sixth {
+	font-family: 'Trebuchet MS';
+	color: yellowgreen;
+}
+
+#seventh {
+	font-family: Courier;
+	color: magenta;
+}
