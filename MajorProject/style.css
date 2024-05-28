@@ -1,0 +1,200 @@
+/* Main styling for the pages */
+body {
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: rgb(238, 246, 232);
+}
+
+p {
+    font-family: Ysabeau sc;
+    color: rgb(11, 41, 8);
+    text-align: center;
+}
+
+img { 
+    float: right;
+    border-radius: 50%;
+}
+
+.gallery {
+    display: inline-block;
+    margin: 5px;
+    vertical-align: top;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* This section of the CSS is specifically for the styling for the table under hikes */
+table {
+    width: 100%;
+    border: 2px solid rgb(26, 46, 26);
+}
+
+table tr:nth-child(1) {
+    background-color: rgb(170, 189, 170);
+}
+
+i {
+    color: red;
+}
+
+/* Table data font styling */
+td {
+    font-family: Ysabeau sc;
+}
+
+/* Table header font styling */
+th {
+    font-family: Ysabeau sc;
+}
+
+/* Footer styling at the bottom of each page */
+footer {
+    position: relative;
+    background-color: rgb(152, 172, 152);
+    width: 100%;
+    padding: 20px;
+    margin-top: 500px;
+    text-align: center;
+}
+
+header {
+    background-color: rgb(2, 37, 37);
+    margin: auto;
+    padding: 5px;
+    height: 55px;
+}
+
+/* Standard header */
+h1 {
+    font-family: exo;
+    font-size: 60px;
+    color: rgb(23, 147, 224);
+    text-align: left;
+    display: inline;
+}
+
+/* The font family 'permanent marker' is set for home page h2 header only */
+h2 {
+    font-family: permanent marker;
+    font-size: 50px;
+    color: teal; 
+    text-align: left;
+    display: inline;
+}
+
+/* The font family is set as the basic default for all text on the stylesheet */
+h3 {
+    font-family: Ysabeau sc;
+    color: rgb(44, 65, 44);
+    text-align: center;
+}
+
+/* This form is for the search bar but has been set as "form" for this stylesheet */
+form {
+    float: right;
+}
+
+img.falls {
+    float: left;
+    margin: auto;
+    border-radius: 0%;
+    padding: 50px;
+}
+
+.custom {
+    float: left;
+    font-family: Ysabeau sc;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+    color: rgb(32, 43, 32);
+}
+
+img.werribee {
+    border-radius: 13.33%;
+}
+
+
+
+.logo {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Styling for the navigation bar and the logo, this also includes the drop-down menu */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure links take full width */
+    list-style: none;
+    padding: 0;
+    margin: 0 20px;
+    color: white;
+}
+
+.nav-links a {
+    font-size: 18px; /* Ensure font size is specified with unit */
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    padding: 20px;
+    transition: background-color 0.3s;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-links a:hover {
+    background-color: #575757;
+    color: white;
+}
+
+/* Ensure that visited links are also white */
+.nav-links a:visited {
+    color: #fff;
+}
+/* Dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
