@@ -1,19 +1,20 @@
 <?php
-session_start();    
-include ('./includes/db_connect.inc');
-include ('./includes/header.inc');
+include('./includes/header.inc');
+include('./includes/db_connect.inc');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hike Details</title>
+    <title>Hikes Victoria</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <header>
-    <!-- Contains the navigation bar with the logo integrated in the main menu -->
     <nav class="navbar">
         <div class="logo">
             <img src="logo.png" alt="Main Logo">
@@ -40,57 +41,56 @@ include ('./includes/header.inc');
     </nav>
 </header>
 
-<main>
 <?php
-// Check if hikeid is set in the query string
-if(isset($_GET['id'])) {
-    // Sanitize the hikeid to prevent SQL injection
-    $hikeid = mysqli_real_escape_string($conn, $_GET['id']);
-    
-    // Fetch hike details from the database based on hikeid
-    $sql = "SELECT * FROM hikes WHERE hikeid = $hikeid";
-    $result = mysqli_query($conn, $sql);
 
-    // Check if the query executed successfully
-    if($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
+
+// Initialize variables to store search parameters
+$keyword = isset($_GET['q']) ? '%' . $_GET['q'] . '%' : '';
+$level = isset($_GET['level']) ? $_GET['level'] : '';
+
+// Prepare the SQL statement with placeholders for security
+$sql = "SELECT * FROM hikes WHERE (hikename LIKE ? OR description LIKE ?)";
+
+// Add condition for level if specified
+if (!empty($level)) {
+    $sql .= " AND level = ?";
+}
+
+// Prepare the statement
+$stmt = mysqli_prepare($conn, $sql);
+
+// Bind parameters
+mysqli_stmt_bind_param($stmt, "sss", $keyword, $keyword, $level);
+
+// Execute the query
+mysqli_stmt_execute($stmt);
+
+// Get the result set
+$result = mysqli_stmt_get_result($stmt);
+
+// Check if there are rows in the result set
+if ($result && mysqli_num_rows($result) > 0) {
+    // Output the search results
+    while ($row = mysqli_fetch_assoc($result)) {
         // Display hike details
         echo "<div class='hike-details'>";
         echo "<h2>" . htmlspecialchars($row['hikename']) . "</h2>";
         echo "<img src='images/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['hikename']) . "'>";
+        echo "<p><strong>Description:</strong> " . nl2br(htmlspecialchars($row['description'])) . "</p>";
         echo "<p><strong>Distance:</strong> " . htmlspecialchars($row['distance']) . " km</p>";
         echo "<p><strong>Level:</strong> " . htmlspecialchars($row['level']) . "</p>";
         echo "<p><strong>Location:</strong> " . htmlspecialchars($row['location']) . "</p>";
-
-        // Check if user is logged in
-        $is_logged_in = isset($_SESSION['user_id']);
-        if ($is_logged_in) {
-            echo "<a href='edit.php?id=$hikeid' class='btn btn-primary'>Edit</a>";
-            echo "<button class='btn btn-danger' onclick='confirmDelete($hikeid)'>Delete</button>";
-        }
-
         echo "</div>";
-    } else {
-        // Hike not found
-        echo "<p>Hike not found.</p>";
     }
 } else {
-    // Hikeid not provided in the query string
-    echo "<p>No hike selected.</p>";
+    echo "No hikes found.";
 }
+
+// Close the statement and database connection
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
 ?>
-</main>
 
 <?php
 include('./includes/footer.inc');
 ?>
-
-<script>
-function confirmDelete(hikeId) {
-    if (confirm("Are you sure you want to delete this hike?")) {
-        window.location.href = "delete.php?id=" + hikeId;
-    }
-}
-</script>
-</body>
-</html>

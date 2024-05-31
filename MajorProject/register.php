@@ -1,5 +1,5 @@
 <?php
-include './include/db_connect.php';
+include ('./includes/db_connect.inc');
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ include './include/db_connect.php';
 
 <header>
     <!-- Navigation -->
-    <nav>
+    <nav class="navbar">
         <div class="logo">
             <img src="logo.png" alt="Main Logo">
         </div>
@@ -26,9 +26,16 @@ include './include/db_connect.php';
             <a href="login.php">Login</a>
             <a href="register.php">Register</a>
         </div>
-        <form id="form" method="get" action="search.php">
-            <input type="search" id="query" name="q" placeholder="Search...">
-            <button>Search</button>
+        <form id="form" action="search.php" method="GET" class="form-inline">
+            <input type="search" id="query" name="q" placeholder="Search..." class="form-control mr-sm-2">
+            <select id="level" name="level" class="form-control mr-sm-2">
+                <option value="">All Levels</option>
+                <option value="Easy">Easy</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Difficult">Difficult</option>
+                <!-- Add more options if needed -->
+            </select>
+            <button type="submit" class="btn btn-primary">Search</button>
         </form>
     </nav>
 </header>
@@ -75,5 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 mysqli_close($conn);
 ?>
 
+
+<?php
+include("./includes/footer.inc")
+?>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include'./include/header.inc';
+include('./includes/header.inc');
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ include'./include/header.inc';
 
 <header>
     <!-- Contains the navigation bar with the logo integrated in the main menu -->
-    <nav>
+    <nav class="navbar">
         <div class="logo">
             <img src="logo.png" alt="Main Logo">
         </div>
@@ -26,10 +26,17 @@ include'./include/header.inc';
             <a href="login.php">Login</a>
             <a href="register.php">Register</a>
         </div>
-        <form id="form"> 
-            <input type="search" id="query" name="q" placeholder="Search...">
-            <button>Search</button>
-        </form> 
+        <form id="form" action="search.php" method="GET" class="form-inline">
+            <input type="search" id="query" name="q" placeholder="Search..." class="form-control mr-sm-2">
+            <select id="level" name="level" class="form-control mr-sm-2">
+                <option value="">All Levels</option>
+                <option value="Easy">Easy</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Difficult">Difficult</option>
+                <!-- Add more options if needed -->
+            </select>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </nav>
 </header>
 
@@ -56,7 +63,7 @@ include'./include/header.inc';
     </tr>
     <?php
     // Include the database connection file
-    include 'db_connect.inc';
+    include ('./includes/db_connect.inc');
 
     // Query to fetch all hikes from the hikes table
     $sql = "SELECT * FROM hikes";
@@ -78,12 +85,13 @@ include'./include/header.inc';
         // If no hikes found in the database
         echo "<tr><td colspan='4'>No hikes found</td></tr>";
     }
+
     ?>
 </table>
-
-<footer>
-    <p>&copy; s3948206 Matthew Leviste Raagas</p>
-</footer>
-
+<?php
+include('./includes/footer.inc');
+?>
 </body>
 </html>
+
+

@@ -8,9 +8,9 @@ if(!$loggedIn) {
     exit(); // Stop further execution
 }
 
-include './include/db_connect.php';
-include './include/header.php';
-include './include/nav.php';
+include ('./includes/db_connect.php');
+include ('./includes/header.php');
+include ('./includes/nav.php');
 
 if(isset($_GET['id'])) {
     // Sanitize the hikeid to prevent SQL injection
@@ -47,10 +47,17 @@ if(isset($_GET['id'])) {
             <a href="login.php">Login</a>
             <a href="register.php">Register</a>
         </div>
-        <form id="form"> 
-            <input type="search" id="query" name="q" placeholder="Search...">
-            <button>Search</button>
-        </form> 
+        <form id="form" action="search.php" method="GET" class="form-inline">
+            <input type="search" id="query" name="q" placeholder="Search..." class="form-control mr-sm-2">
+            <select id="level" name="level" class="form-control mr-sm-2">
+                <option value="">All Levels</option>
+                <option value="Easy">Easy</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Difficult">Difficult</option>
+                <!-- Add more options if needed -->
+            </select>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </nav>
 </header>
 

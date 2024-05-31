@@ -1,7 +1,6 @@
 <?php
-include './include/db_connect.php';
-include './include/header.php';
-include './include/nav.php';
+include './includes/db_connect.inc';
+include './includes/header.inc';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +13,7 @@ include './include/nav.php';
 <body>
 <header>
     <!-- Contains the navigation bar with the logo integrated in the main menu -->
-    <nav>
+    <nav class="navbar">
         <div class="logo">
             <img src="logo.png" alt="Main Logo">
         </div>
@@ -26,10 +25,17 @@ include './include/nav.php';
             <a href="login.php">Login</a>
             <a href="register.php">Register</a>
         </div>
-        <form id="form" method="get" action="search.php"> 
-            <input type="search" id="query" name="q" placeholder="Search...">
-            <button>Search</button>
-        </form> 
+        <form id="form" action="search.php" method="GET" class="form-inline">
+            <input type="search" id="query" name="q" placeholder="Search..." class="form-control mr-sm-2">
+            <select id="level" name="level" class="form-control mr-sm-2">
+                <option value="">All Levels</option>
+                <option value="Easy">Easy</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Difficult">Difficult</option>
+                <!-- Add more options if needed -->
+            </select>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </nav>
 </header>
 
@@ -90,15 +96,24 @@ include './include/nav.php';
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $hikename = $_POST['hike'];
-    $description = $_POST['description'];
-    $imageCaption = $_POST['imageCaption'];
-    $distance = $_POST['distance'];
-    $location = $_POST['location'];
-    $level = $_POST['level'];
+    // Database connection
+    $conn = mysqli_connect("localhost", "root", "", "hikesvictoria");
+
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $targetDir = "images/";
+
+    $hikename = mysqli_real_escape_string($conn, $_POST['hike']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $imageCaption = mysqli_real_escape_string($conn, $_POST['imageCaption']);
+    $distance = mysqli_real_escape_string($conn, $_POST['distance']);
+    $location = mysqli_real_escape_string($conn, $_POST['location']);
+    $level = mysqli_real_escape_string($conn, $_POST['level']);
 
     // Check if file is uploaded successfully
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {    
         $targetDir = "images/";
         $fileName = basename($_FILES["image"]["name"]);
         $targetFilePath = $targetDir . $fileName;
@@ -126,10 +141,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error uploading file.";
     }
-}
 
-// Close database connection
-mysqli_close($conn);
+    // Close database connection
+    mysqli_close($conn);
+}
+?>
+
+<br><br><br><br><br><br>
+
+<?php
+include ('./includes/footer.inc');
 ?>
 
 </body>
