@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer="main.js"> </script>
+    <title>Add More</title>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Select an option...</button>
+                <div class="dropdown-content">
+                    <a href="index.html">Home</a>
+                    <a href="pets.html">Pets</a>
+                    <a href="add.html">Add More</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+            <form id="form">
+                <input type="search" id="query" name="q" placeholder="Search...">
+                <div class="search">
+                    <button>
+                        <img src="images/search.png" alt="search">
+                    </button>
+                </div>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+
+        <div>
+            <h2 class="add"> Add a pet</h2>
+        </div>
+
+        <p> You Can Add A New Pet Here</p>
+        <form id="add-pet-form">
+            <label for="pet-name">Pet Name:</label>
+            <input type="text" id="pet-name" name="pet-name" placeholder="Provide a name for the pet" required>
+
+            <label for="pet-type">TYPE:</label>
+            <select id="pet-type" name="pet-type" required>
+                <option value="" disabled selected>--Choose an option--</option>
+                <option value="cat">Cat</option>
+                <option value="dog">Dog</option>
+            </select>
+
+            <label for="description">DESCRIPTION:</label>
+            <textarea id="description" name="description" placeholder="Describe the pet briefly" required></textarea>
+
+            <label for="pet-image">Select an image:</label>
+            <input type="file" id="pet-image" name="pet-image" accept="image/*" required>
+            <span class="image-info">Max Image size 500px</span>
+
+            <label for="image-caption">Image Caption:</label>
+            <input type="text" id="image-caption" name="image-caption" placeholder="Describe the image in one word"
+                required>
+
+            <label for="age-months">Age (months):</label>
+            <input type="number" id="age-months" name="age-months" placeholder="Age of pet in months" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="Location of the pet" required>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="reset" class="btn-clear">Clear</button>
+            </div>
+        </form>
+
+    </main>
+
+    <div class="f1">
+        <footer>
+            <p>&copy; s3948206 Matthew Leviste Raagas</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
