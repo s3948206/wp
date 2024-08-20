@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../fonts/Permanent_Marker/PermanentMarker-Regular.ttf');
+    src: url('../fonts/Poetsen_One/PoetsenOne-Regular.ttf');
+    src: url('../fonts/Ysabeau_SC/YsabeauSC-VariableFont_wght.ttf');
+}
+
+
 body {
     font-family: 'Ysabeau SC', sans-serif;
     max-width: 1200px;
