@@ -170,6 +170,28 @@ th {
     /* Adds some padding around the content */
 }
 
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gallery-item {
+    text-align: center;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.gallery-item p {
+    font-size: 18px;
+    color: #36454F;
+    margin-top: 10px;
+}
+
 #add-pet-form {
     display: flex;
     flex-direction: column;
