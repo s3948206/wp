@@ -135,6 +135,16 @@ th {
     color: #008080;
 }
 
+.g1 {
+    font-family: PoetsenOne, sans-serif;
+    font-size: 20px;
+    color: #008080;
+    text-align: center;
+    display: block;
+}
+
+
+
 .pets {
     font-family: PoetsenOne, sans-serif;
     font-size: 20px;
