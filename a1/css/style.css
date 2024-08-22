@@ -241,8 +241,8 @@ th {
 }
 
 .form-buttons {
-    display: flex;
-    justify-content: flex-start;
+    display: block;
+    text-align: center;
     gap: 20px;
 }
 
