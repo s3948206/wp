@@ -206,14 +206,18 @@ th {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 60%;
-    /* Adjust this width as needed */
-    margin: 0;
+    max-width: 1200px;
+    /* Ensures the form is 1200px wide */
+    width: 100%;
+    /* Makes the form responsive and stretch to 100% of its container */
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Optional: Add some shadow for styling */
 }
 
+/* Form elements styles */
 #add-pet-form label {
     font-size: 18px;
     color: #36454F;
@@ -227,6 +231,8 @@ th {
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
+    box-sizing: border-box;
+    /* Makes the inputs stretch to the full width of the form */
 }
 
 #add-pet-form input[type="file"] {
