@@ -143,6 +143,24 @@ th {
     display: block;
 }
 
+/* Ensure flexbox is applied to .pet-info-row */
+.pet-info-row {
+    display: flex;
+    /* Aligns the items in a row */
+    justify-content: space-between;
+    /* Distributes items evenly */
+    gap: 20px;
+    /* Adds space between each item */
+    margin-top: 15px;
+    /* Adds space between the image and the info */
+}
+
+/* Adjust the individual p tags */
+.pet-info-row p {
+    margin: 0;
+    font-size: 16px;
+}
+
 
 
 .pets {
@@ -192,7 +210,10 @@ th {
 
 .gallery-item img {
     width: 100%;
-    height: auto;
+    height: 300px;
+    /* Set a fixed height for uniformity */
+    object-fit: cover;
+    /* Crop the image to maintain aspect ratio while filling the container */
     border-radius: 10px;
 }
 
@@ -202,12 +223,13 @@ th {
     margin-top: 10px;
 }
 
+
 #add-pet-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    max-width: 1200px;
-    /* Ensures the form is 1200px wide */
+    max-width: 1000px;
+    /* Ensures the form is 1000px wide */
     width: 100%;
     /* Makes the form responsive and stretch to 100% of its container */
     padding: 20px;
