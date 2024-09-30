@@ -2,10 +2,6 @@
 include_once("includes/header.inc");
 include_once("includes/db_connect.inc");
 
-// Enable error reporting for debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
@@ -18,22 +14,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Handle file upload
     $target_dir = "images/";
-    $target_file = $target_dir . basename($_FILES["pet-image"]["name"]);
+
+    // Generate a unique name for the file by appending a timestamp
+    $unique_id = time(); // You can also use uniqid() or random_bytes()
+    $target_file = $target_dir . $unique_id . '_' . basename($_FILES["pet-image"]["name"]);
+
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Check if image file is a valid image or fake
+    // Check if image file is a valid image
     $check = getimagesize($_FILES["pet-image"]["tmp_name"]);
     if ($check !== false) {
         $uploadOk = 1;
     } else {
         echo "File is not an image.";
-        $uploadOk = 0;
-    }
-
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
         $uploadOk = 0;
     }
 
@@ -57,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES["pet-image"]["tmp_name"], $target_file)) {
             echo "The file " . basename($_FILES["pet-image"]["name"]) . " has been uploaded.";
 
-            // Prepare and bind SQL statement
+            // Prepare and bind SQL statement to insert the pet data into the database
             $stmt = $conn->prepare("INSERT INTO pets (petname, description, image, caption, age, location, type) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssiss", $petname, $description, $target_file, $caption, $age, $location, $pettype);
 
@@ -71,12 +65,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Close statement and connection
             $stmt->close();
             $conn->close();
+
+            // Redirect to the gallery page after successful submission
+            header("Location: gallery.php");
+            exit();
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
 }
 ?>
+
 
 <main>
     <div>
@@ -116,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </main>
-
 
 <?php
 include_once("includes/footer.inc");
