@@ -66,8 +66,8 @@ include_once("includes/db_connect.inc");
         $result = mysqli_query($conn, $sql);
 
         while ($row = mysqli_fetch_assoc($result)) {
-            // Only display pets that were added dynamically (skip pets with specific hardcoded IDs)
-            if ($row['petid'] > 6) { // assuming first 6 pets are static
+            // Skip static pets if necessary (static ones already exist with petid <= 6)
+            if ($row['petid'] > 6) {
         ?>
                 <div class="gallery-item">
                     <a href="details.php?pet_id=<?php echo $row['petid']; ?>">
@@ -80,6 +80,7 @@ include_once("includes/db_connect.inc");
         }
         ?>
     </div>
+
 </main>
 
 <?php
