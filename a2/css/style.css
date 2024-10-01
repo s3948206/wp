@@ -143,6 +143,25 @@ th {
     display: block;
 }
 
+
+.pet-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Make the image responsive and centered */
+.pet-details img {
+    width: 400px;
+    height: 400px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
 /* Ensure flexbox is applied to .pet-info-row */
 .pet-info-row {
     display: flex;
@@ -161,7 +180,13 @@ th {
     font-size: 16px;
 }
 
-
+.material-symbols-outlined {
+    margin-right: 8px;
+    /* Space between the icon and data */
+    font-size: 24px;
+    /* Icon size */
+    vertical-align: middle;
+}
 
 .pets {
     font-family: PoetsenOne, sans-serif;
@@ -180,6 +205,8 @@ th {
 
     /* Thin black border around the table */
 }
+
+
 
 .main-content {
     display: flex;
