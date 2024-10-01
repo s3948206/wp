@@ -60,15 +60,24 @@ $conn->close();
 
             <!-- Add a new div to hold the pet info -->
             <div class="pet-info-row">
-                <p><strong>Type:</strong> <?php echo htmlspecialchars($pet['type']); ?></p>
-                <p><strong>Age:</strong> <?php echo htmlspecialchars($pet['age']); ?> months</p>
-                <p><strong>Location:</strong> <?php echo htmlspecialchars($pet['location']); ?></p>
+                <p>
+                    <span class="material-symbols-outlined">alarm</span>
+                    <?php echo htmlspecialchars($pet['age']); ?> months
+                </p>
+
+                <p>
+                    <span class="material-symbols-outlined">pets</span>
+                    <?php echo htmlspecialchars($pet['type']); ?>
+                </p>
+
+                <p>
+                    <span class="material-symbols-outlined">place</span>
+                    <?php echo htmlspecialchars($pet['location']); ?>
+                </p>
             </div>
         </div>
     <?php } ?>
 </main>
-
-
 
 <?php
 include_once("includes/footer.inc");
