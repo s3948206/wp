@@ -251,19 +251,21 @@ th {
 }
 
 
+/* Form container */
 #add-pet-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    max-width: 1000px;
-    /* Ensures the form is 1000px wide */
+    max-width: 1150px;
     width: 100%;
-    /* Makes the form responsive and stretch to 100% of its container */
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Optional: Add some shadow for styling */
+    box-sizing: border-box;
+    /* Ensures padding doesn't affect total width */
+    margin: 20px;
+    /* Optional: Adds some space around the form */
 }
 
 /* Form elements styles */
