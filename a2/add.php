@@ -110,8 +110,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="location" name="location" placeholder="Location of the pet" required>
 
         <div class="form-buttons">
-            <button type="submit" class="btn-submit">Submit</button>
-            <button type="reset" class="btn-clear">Clear</button>
+            <button type="submit" class="btn-submit">
+                <span class="material-symbols-outlined">add_task</span> Submit
+            </button>
+            <button type="reset" class="btn-clear">
+                <span class="material-symbols-outlined">close</span> Clear
+            </button>
         </div>
     </form>
 </main>
