@@ -65,5 +65,3 @@ include_once("includes/db_connect.inc");
 <?php
 include_once("includes/footer.inc");
 ?>
-
-</html>
