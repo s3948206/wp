@@ -75,9 +75,15 @@ $conn->close();
                     <?php echo htmlspecialchars($pet['location']); ?>
                 </p>
             </div>
+
+            <!-- Add description underneath the pet info -->
+            <div class="pet-description">
+                <p><?php echo htmlspecialchars($pet['description']); ?></p>
+            </div>
         </div>
     <?php } ?>
 </main>
+
 
 <?php
 include_once("includes/footer.inc");
