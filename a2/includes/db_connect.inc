@@ -1,11 +1,20 @@
 <?php
-// Database connection credentials
-$servername = "localhost";
-$username = "s3948206";
-$password = "Impr4za0587";
-$dbname = "petsvictoria";
+// Check if the script is running on the local machine or on the production server
+if ($_SERVER['SERVER_NAME'] == 'localhost') {
 
-// Create Connection
+    $servername = "localhost";
+    $username = "s3948206";
+    $password = "Impr4za0587";
+    $dbname = "petsvictoria";
+} else {
+
+    $servername = "talsprddb02.int.its.rmit.edu.au";
+    $username = "s3948206";
+    $password = "M@verick0587";
+    $dbname = "petsvictoria";
+}
+
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
