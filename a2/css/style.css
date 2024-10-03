@@ -94,7 +94,6 @@ form input[type="search"] {
 }
 
 
-
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 1,
@@ -114,7 +113,7 @@ h1 {
 }
 
 h2 {
-    font-family: PoetsenOne;
+    font-family: 'PoetsenOne', sans-serif;
     font-size: 50px;
     color: #008080;
     text-align: left;
@@ -123,7 +122,7 @@ h2 {
 
 th {
     color: #008080;
-    font-family: Ysabeau SC;
+    font-family: 'Ysabeau SC', sans-serif;
     background-color: antiquewhite;
 }
 
