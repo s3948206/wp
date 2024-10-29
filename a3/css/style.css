@@ -13,6 +13,23 @@ header {
     margin: 0 auto;
 }
 
+
+.home-page {
+    display: flex;
+    /* Use flexbox to create a horizontal layout */
+    align-items: center;
+    /* Center items vertically */
+}
+
+#petCarousel {
+    flex: 1;
+    /* Allow carousel to take up remaining space */
+    max-width: 500px;
+    /* Set a maximum width for the carousel */
+    margin-right: 20px;
+    /* Add space between the carousel and the text */
+}
+
 nav {
     display: flex;
     justify-content: space-between;
