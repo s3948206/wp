@@ -1,7 +1,10 @@
-body {
+main {
     font-family: 'Ysabeau SC', sans-serif;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
+
 
 header {
     background-color: #008080;
@@ -12,7 +15,6 @@ header {
 .container {
     margin: 0 auto;
 }
-
 
 .home-page {
     display: flex;
@@ -432,11 +434,57 @@ th {
     background-color: #005959;
 }
 
+/* user pet action buttons */
+/* Edit button styles */
+.btn-edit {
+    display: inline-block;
+    /* Allows padding and background color */
+    padding: 10px 15px;
+    /* Add some padding for better appearance */
+    background-color: #007bff;
+    /* Bootstrap primary blue */
+    color: white;
+    /* White text */
+    text-decoration: none;
+    /* Remove underline */
+    border-radius: 5px;
+    /* Rounded corners */
+    transition: background-color 0.3s ease;
+    /* Smooth background transition */
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}
+
+/* Delete button styles */
+.btn-delete {
+    display: inline-block;
+    /* Allows padding and background color */
+    padding: 10px 15px;
+    /* Add some padding for better appearance */
+    background-color: #dc3545;
+    /* Bootstrap danger red */
+    color: white;
+    /* White text */
+    text-decoration: none;
+    /* Remove underline */
+    border-radius: 5px;
+    /* Rounded corners */
+    transition: background-color 0.3s ease;
+    /* Smooth background transition */
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    /* Darker red on hover */
+}
 
 
 footer {
     background-color: #E57F3D;
-    max-width: 1300px;
+    width: 100%;
     padding: 20px;
     text-align: center;
     margin: 0;
