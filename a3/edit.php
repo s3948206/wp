@@ -69,35 +69,35 @@ if (isset($_GET['pet_id'])) {
     echo "<p>Invalid pet ID.</p>";
 }
 ?>
+<div class="container">
+    <main>
+        <h2>Edit Pet</h2>
+        <form method="post" action="edit.php?pet_id=<?php echo $pet_id; ?>" enctype="multipart/form-data">
+            <label for="pet-name">Pet Name:</label>
+            <input type="text" id="pet-name" name="pet-name" value="<?php echo htmlspecialchars($pet['petname']); ?>" required>
 
-<main>
-    <h2>Edit Pet</h2>
-    <form method="post" action="edit.php?pet_id=<?php echo $pet_id; ?>" enctype="multipart/form-data">
-        <label for="pet-name">Pet Name:</label>
-        <input type="text" id="pet-name" name="pet-name" value="<?php echo htmlspecialchars($pet['petname']); ?>" required>
+            <label for="pet-type">Type:</label>
+            <select id="pet-type" name="pet-type" required>
+                <option value="cat" <?php if ($pet['type'] == 'cat') echo 'selected'; ?>>Cat</option>
+                <option value="dog" <?php if ($pet['type'] == 'dog') echo 'selected'; ?>>Dog</option>
+            </select>
 
-        <label for="pet-type">Type:</label>
-        <select id="pet-type" name="pet-type" required>
-            <option value="cat" <?php if ($pet['type'] == 'cat') echo 'selected'; ?>>Cat</option>
-            <option value="dog" <?php if ($pet['type'] == 'dog') echo 'selected'; ?>>Dog</option>
-        </select>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required><?php echo htmlspecialchars($pet['description']); ?></textarea>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required><?php echo htmlspecialchars($pet['description']); ?></textarea>
+            <label for="age-months">Age (months):</label>
+            <input type="number" id="age-months" name="age-months" value="<?php echo htmlspecialchars($pet['age']); ?>" required>
 
-        <label for="age-months">Age (months):</label>
-        <input type="number" id="age-months" name="age-months" value="<?php echo htmlspecialchars($pet['age']); ?>" required>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($pet['location']); ?>" required>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($pet['location']); ?>" required>
+            <label for="pet-image">Update Image (optional):</label>
+            <input type="file" id="pet-image" name="pet-image" accept="image/*">
 
-        <label for="pet-image">Update Image (optional):</label>
-        <input type="file" id="pet-image" name="pet-image" accept="image/*">
-
-        <button type="submit">Update Pet</button>
-    </form>
-</main>
-
+            <button type="submit">Update Pet</button>
+        </form>
+    </main>
+</div>
 <?php
 include_once("includes/footer.inc");
 ?>

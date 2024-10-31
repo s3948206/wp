@@ -54,43 +54,43 @@ if (isset($_GET['q']) && !empty(trim($_GET['q']))) {
 
 $conn->close();
 ?>
+<div class="container">
+    <main>
+        <h2>Search Results</h2>
 
-<main>
-    <h2>Search Results</h2>
+        <?php if (!empty($searchResults)) { ?>
+            <div class="search-results">
+                <?php foreach ($searchResults as $pet) { ?>
+                    <div class="pet-details">
+                        <h3><?php echo htmlspecialchars($pet['petname']); ?></h3>
+                        <a href="details.php?pet_id=<?php echo $pet['petid']; ?>">
+                            <img src="<?php echo htmlspecialchars($pet['image']); ?>" alt="<?php echo htmlspecialchars($pet['petname']); ?>">
+                        </a>
 
-    <?php if (!empty($searchResults)) { ?>
-        <div class="search-results">
-            <?php foreach ($searchResults as $pet) { ?>
-                <div class="pet-details">
-                    <h3><?php echo htmlspecialchars($pet['petname']); ?></h3>
-                    <a href="details.php?pet_id=<?php echo $pet['petid']; ?>">
-                        <img src="<?php echo htmlspecialchars($pet['image']); ?>" alt="<?php echo htmlspecialchars($pet['petname']); ?>">
-                    </a>
+                        <div class="pet-info-row">
+                            <p>
+                                <span class="material-symbols-outlined">alarm</span>
+                                <?php echo htmlspecialchars($pet['age']); ?> months
+                            </p>
+                            <p>
+                                <span class="material-symbols-outlined">pets</span>
+                                <?php echo htmlspecialchars($pet['type']); ?>
+                            </p>
+                            <p>
+                                <span class="material-symbols-outlined">place</span>
+                                <?php echo htmlspecialchars($pet['location']); ?>
+                            </p>
+                        </div>
 
-                    <div class="pet-info-row">
-                        <p>
-                            <span class="material-symbols-outlined">alarm</span>
-                            <?php echo htmlspecialchars($pet['age']); ?> months
-                        </p>
-                        <p>
-                            <span class="material-symbols-outlined">pets</span>
-                            <?php echo htmlspecialchars($pet['type']); ?>
-                        </p>
-                        <p>
-                            <span class="material-symbols-outlined">place</span>
-                            <?php echo htmlspecialchars($pet['location']); ?>
-                        </p>
+                        <div class="pet-description">
+                            <p><?php echo htmlspecialchars($pet['description']); ?></p>
+                        </div>
                     </div>
-
-                    <div class="pet-description">
-                        <p><?php echo htmlspecialchars($pet['description']); ?></p>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-    <?php } ?>
-</main>
-
+                <?php } ?>
+            </div>
+        <?php } ?>
+    </main>
+</div>
 <?php
 include_once("includes/footer.inc");
 ?>

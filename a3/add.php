@@ -79,49 +79,50 @@ if (isset($_SESSION['username'])) {
 ?>
 
 <!-- Form for adding a pet -->
-<main>
-    <div>
-        <h2 class="add"> Add a pet</h2>
-    </div>
-    <p> You Can Add A New Pet Here</p>
-    <form id="add-pet-form" action="add.php" method="post" enctype="multipart/form-data">
-        <label for="pet-name">Pet Name:</label>
-        <input type="text" id="pet-name" name="pet-name" placeholder="Provide a name for the pet" required>
-
-        <label for="pet-type">TYPE:</label>
-        <select id="pet-type" name="pet-type" required>
-            <option value="" disabled selected>--Choose an option--</option>
-            <option value="cat">Cat</option>
-            <option value="dog">Dog</option>
-        </select>
-
-        <label for="description">DESCRIPTION:</label>
-        <textarea id="description" name="description" placeholder="Describe the pet briefly" required></textarea>
-
-        <label for="pet-image">Select an image:</label>
-        <input type="file" id="pet-image" name="pet-image" accept="image/*" required>
-        <span class="image-info">Max Image size 500KB</span>
-
-        <label for="image-caption">Image Caption:</label>
-        <input type="text" id="image-caption" name="image-caption" placeholder="Describe the image in one word" required>
-
-        <label for="age-months">Age (months):</label>
-        <input type="number" id="age-months" name="age-months" placeholder="Age of pet in months" required>
-
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" placeholder="Location of the pet" required>
-
-        <div class="form-buttons">
-            <button type="submit" class="btn-submit">
-                <span class="material-symbols-outlined">add_task</span> Submit
-            </button>
-            <button type="reset" class="btn-clear">
-                <span class="material-symbols-outlined">close</span> Clear
-            </button>
+<div class="container">
+    <main>
+        <div>
+            <h2 class="add"> Add a pet</h2>
         </div>
-    </form>
-</main>
+        <p> You Can Add A New Pet Here</p>
+        <form id="add-pet-form" action="add.php" method="post" enctype="multipart/form-data">
+            <label for="pet-name">Pet Name:</label>
+            <input type="text" id="pet-name" name="pet-name" placeholder="Provide a name for the pet" required>
 
+            <label for="pet-type">TYPE:</label>
+            <select id="pet-type" name="pet-type" required>
+                <option value="" disabled selected>--Choose an option--</option>
+                <option value="cat">Cat</option>
+                <option value="dog">Dog</option>
+            </select>
+
+            <label for="description">DESCRIPTION:</label>
+            <textarea id="description" name="description" placeholder="Describe the pet briefly" required></textarea>
+
+            <label for="pet-image">Select an image:</label>
+            <input type="file" id="pet-image" name="pet-image" accept="image/*" required>
+            <span class="image-info">Max Image size 500KB</span>
+
+            <label for="image-caption">Image Caption:</label>
+            <input type="text" id="image-caption" name="image-caption" placeholder="Describe the image in one word" required>
+
+            <label for="age-months">Age (months):</label>
+            <input type="number" id="age-months" name="age-months" placeholder="Age of pet in months" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="Location of the pet" required>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit">
+                    <span class="material-symbols-outlined">add_task</span> Submit
+                </button>
+                <button type="reset" class="btn-clear">
+                    <span class="material-symbols-outlined">close</span> Clear
+                </button>
+            </div>
+        </form>
+    </main>
+</div>
 <?php
 include_once("includes/footer.inc");
 ?>

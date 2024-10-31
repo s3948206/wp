@@ -51,39 +51,39 @@ if (isset($_GET['pet_id'])) {
 
 $conn->close();
 ?>
+<div class="container">
+    <main>
+        <?php if (isset($pet)) { ?>
+            <div class="pet-details">
+                <h2><?php echo htmlspecialchars($pet['petname']); ?></h2>
+                <img src="<?php echo htmlspecialchars($pet['image']); ?>" alt="<?php echo htmlspecialchars($pet['petname']); ?>">
 
-<main>
-    <?php if (isset($pet)) { ?>
-        <div class="pet-details">
-            <h2><?php echo htmlspecialchars($pet['petname']); ?></h2>
-            <img src="<?php echo htmlspecialchars($pet['image']); ?>" alt="<?php echo htmlspecialchars($pet['petname']); ?>">
+                <!-- Add a new div to hold the pet info -->
+                <div class="pet-info-row">
+                    <p>
+                        <span class="material-symbols-outlined">alarm</span>
+                        <?php echo htmlspecialchars($pet['age']); ?> months
+                    </p>
 
-            <!-- Add a new div to hold the pet info -->
-            <div class="pet-info-row">
-                <p>
-                    <span class="material-symbols-outlined">alarm</span>
-                    <?php echo htmlspecialchars($pet['age']); ?> months
-                </p>
+                    <p>
+                        <span class="material-symbols-outlined">pets</span>
+                        <?php echo htmlspecialchars($pet['type']); ?>
+                    </p>
 
-                <p>
-                    <span class="material-symbols-outlined">pets</span>
-                    <?php echo htmlspecialchars($pet['type']); ?>
-                </p>
+                    <p>
+                        <span class="material-symbols-outlined">place</span>
+                        <?php echo htmlspecialchars($pet['location']); ?>
+                    </p>
+                </div>
 
-                <p>
-                    <span class="material-symbols-outlined">place</span>
-                    <?php echo htmlspecialchars($pet['location']); ?>
-                </p>
+                <!-- Add description underneath the pet info -->
+                <div class="pet-description">
+                    <p><?php echo htmlspecialchars($pet['description']); ?></p>
+                </div>
             </div>
-
-            <!-- Add description underneath the pet info -->
-            <div class="pet-description">
-                <p><?php echo htmlspecialchars($pet['description']); ?></p>
-            </div>
-        </div>
-    <?php } ?>
-</main>
-
+        <?php } ?>
+    </main>
+</div>
 
 <?php
 include_once("includes/footer.inc");

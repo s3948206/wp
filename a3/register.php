@@ -40,33 +40,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close database connection
 $conn->close();
 ?>
+<div class="container">
+    <main>
+        <h2>Register</h2>
 
-<main>
-    <h2>Register</h2>
+        <!-- Display success or error messages -->
+        <?php if (!empty($error)) { ?>
+            <div class="error"><?php echo $error; ?></div>
+        <?php } elseif (!empty($success)) { ?>
+            <div class="success"><?php echo $success; ?></div>
+        <?php } ?>
 
-    <!-- Display success or error messages -->
-    <?php if (!empty($error)) { ?>
-        <div class="error"><?php echo $error; ?></div>
-    <?php } elseif (!empty($success)) { ?>
-        <div class="success"><?php echo $success; ?></div>
-    <?php } ?>
+        <!-- Registration Form -->
+        <form action="register.php" method="POST" id="register-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
 
-    <!-- Registration Form -->
-    <form action="register.php" method="POST" id="register-form">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-
-        <button type="submit">Register</button>
-    </form>
-</main>
-
+            <button type="submit">Register</button>
+        </form>
+    </main>
+</div>
 <?php
 include_once("includes/footer.inc");
 ?>

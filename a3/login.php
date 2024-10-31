@@ -39,27 +39,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+<div class="container">
+    <main>
+        <h2>Login</h2>
 
-<main>
-    <h2>Login</h2>
+        <?php if (!empty($error)) { ?>
+            <div class="error"><?php echo $error; ?></div>
+        <?php } ?>
 
-    <?php if (!empty($error)) { ?>
-        <div class="error"><?php echo $error; ?></div>
-    <?php } ?>
+        <form action="login.php" method="POST" id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
 
-    <form action="login.php" method="POST" id="login-form">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-
-        <button type="submit">Login</button>
-    </form>
-</main>
-
+            <button type="submit">Login</button>
+        </form>
+    </main>
+</div>
 <?php include_once("includes/footer.inc"); ?>
