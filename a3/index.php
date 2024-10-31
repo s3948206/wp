@@ -32,6 +32,7 @@ include_once("includes/header.inc");
         <h1>Pets Victoria</h1>
         <h2>WELCOME TO PET<br>ADOPTION</h2>
     </div>
+
 </main>
 
 
