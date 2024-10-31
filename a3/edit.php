@@ -2,7 +2,6 @@
 include_once("includes/header.inc");
 include_once("includes/db_connect.inc");
 
-
 if (!isset($_SESSION['username'])) {
     echo "<p>You must be logged in to edit a pet.</p>";
     exit();
@@ -32,8 +31,31 @@ if (isset($_GET['pet_id'])) {
         $location = $_POST['location'];
         $type = $_POST['pet-type'];
 
-        $stmt = $conn->prepare("UPDATE pets SET petname = ?, description = ?, age = ?, location = ?, type = ? WHERE petid = ? AND username = ?");
-        $stmt->bind_param("ssissis", $petname, $description, $age, $location, $type, $pet_id, $username);
+        // Check if a new image file is uploaded
+        if (isset($_FILES['pet-image']) && $_FILES['pet-image']['error'] == 0) {
+            $imageDir = './images/';
+            $imagePath = $imageDir . basename($_FILES['pet-image']['name']);
+            $imageFileType = strtolower(pathinfo($imagePath, PATHINFO_EXTENSION));
+
+            // Validate image file type
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+            if (in_array($imageFileType, $allowedTypes)) {
+                // Move uploaded file to images directory
+                if (move_uploaded_file($_FILES['pet-image']['tmp_name'], $imagePath)) {
+                    // Update pet details including the new image
+                    $stmt = $conn->prepare("UPDATE pets SET petname = ?, description = ?, age = ?, location = ?, type = ?, image = ? WHERE petid = ? AND username = ?");
+                    $stmt->bind_param("ssisssis", $petname, $description, $age, $location, $type, $imagePath, $pet_id, $username);
+                } else {
+                    echo "<p>Error uploading image.</p>";
+                }
+            } else {
+                echo "<p>Invalid file type. Only JPG, JPEG, PNG, and GIF are allowed.</p>";
+            }
+        } else {
+            // Update without changing the image
+            $stmt = $conn->prepare("UPDATE pets SET petname = ?, description = ?, age = ?, location = ?, type = ? WHERE petid = ? AND username = ?");
+            $stmt->bind_param("ssissis", $petname, $description, $age, $location, $type, $pet_id, $username);
+        }
 
         if ($stmt->execute()) {
             echo "<p>Pet updated successfully!</p>";
@@ -50,7 +72,7 @@ if (isset($_GET['pet_id'])) {
 
 <main>
     <h2>Edit Pet</h2>
-    <form method="post" action="edit.php?pet_id=<?php echo $pet_id; ?>">
+    <form method="post" action="edit.php?pet_id=<?php echo $pet_id; ?>" enctype="multipart/form-data">
         <label for="pet-name">Pet Name:</label>
         <input type="text" id="pet-name" name="pet-name" value="<?php echo htmlspecialchars($pet['petname']); ?>" required>
 
@@ -68,6 +90,9 @@ if (isset($_GET['pet_id'])) {
 
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($pet['location']); ?>" required>
+
+        <label for="pet-image">Update Image (optional):</label>
+        <input type="file" id="pet-image" name="pet-image" accept="image/*">
 
         <button type="submit">Update Pet</button>
     </form>
